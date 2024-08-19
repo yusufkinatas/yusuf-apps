@@ -27,5 +27,6 @@ module.exports = {
     'simple-import-sort/exports': 'error',
     'unicorn/prevent-abbreviations': 'off',
     'unicorn/no-for-loop': 'off',
+    '@typescript-eslint/prefer-for-of': 'off',
   },
 }
