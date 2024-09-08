@@ -1,11 +1,9 @@
-import { Sokoban } from './games/sokoban'
+import { ColorFinder } from './games/color-finder'
 
-function App() {
+export const App = () => {
   return (
     <div>
-      <Sokoban />
+      <ColorFinder />
     </div>
   )
 }
-
-export default App
