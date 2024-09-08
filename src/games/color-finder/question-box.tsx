@@ -10,7 +10,7 @@ export const QuestionBox = ({
   question: ColorQuestion
   onChoose: (isCorrect: boolean) => void
 }) => (
-  <div className="gap- grid w-fit min-w-fit grid-cols-3 border-8 border-black bg-white">
+  <div className="grid w-fit min-w-fit grid-cols-3 gap-2 border-8 border-black bg-white">
     {times(BOX_COUNT).map(i => (
       <div
         onClick={() => onChoose(i === differentIndex)}
