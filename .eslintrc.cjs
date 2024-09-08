@@ -28,5 +28,38 @@ module.exports = {
     'unicorn/prevent-abbreviations': 'off',
     'unicorn/no-for-loop': 'off',
     '@typescript-eslint/prefer-for-of': 'off',
+    'padding-line-between-statements': [
+      'error',
+      {
+        blankLine: 'always',
+        prev: 'block-like',
+        next: '*',
+      },
+      {
+        blankLine: 'always',
+        prev: 'multiline-expression',
+        next: '*',
+      },
+      {
+        blankLine: 'always',
+        prev: ['const', 'let', 'var'],
+        next: '*',
+      },
+      {
+        blankLine: 'any',
+        prev: ['singleline-const', 'singleline-let', 'singleline-var'],
+        next: ['const', 'let', 'var'],
+      },
+      {
+        blankLine: 'always',
+        prev: '*',
+        next: 'return',
+      },
+      {
+        blankLine: 'always',
+        prev: '*',
+        next: 'export',
+      },
+    ],
   },
 }
