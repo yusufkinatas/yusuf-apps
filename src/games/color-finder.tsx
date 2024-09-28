@@ -1,4 +1,3 @@
-import { times } from 'lodash'
 import { useState } from 'react'
 
 import { generateQuestion } from './color-finder/generate-question'
@@ -25,28 +24,11 @@ export const ColorFinder = () => {
   }
 
   return (
-    <div className="h-svh items-center justify-center overflow-auto bg-slate-400 p-8">
+    <div className="flex h-svh flex-col items-center justify-center gap-4 bg-slate-400 p-8">
       <p>Current difficulty: {question.difficulty + 1}</p>
       <p>Remaining lives: {remainingLives}</p>
 
       <QuestionBox question={question} onChoose={handleAnswer} />
-
-      <div className="flex flex-col gap-8">
-        {times(10).map(difficulty => (
-          <div key={difficulty}>
-            <h2 className="text-5xl font-bold text-white">Difficulty {difficulty + 1}</h2>
-            <div className="flex">
-              {times(4).map(i => (
-                <QuestionBox
-                  key={i}
-                  question={generateQuestion(difficulty)}
-                  onChoose={isCorrect => alert(isCorrect ? 'Correct!' : 'Wrong!')}
-                />
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   )
 }
