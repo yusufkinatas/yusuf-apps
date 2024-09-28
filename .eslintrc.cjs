@@ -61,5 +61,6 @@ module.exports = {
         next: 'export',
       },
     ],
+    'react/no-unknown-property': ['error', { ignore: ['sx'] }],
   },
 }

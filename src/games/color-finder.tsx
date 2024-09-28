@@ -24,9 +24,19 @@ export const ColorFinder = () => {
   }
 
   return (
-    <div className="flex h-svh flex-col items-center justify-center gap-4 bg-slate-400 p-8">
-      <p>Current difficulty: {question.difficulty + 1}</p>
-      <p>Remaining lives: {remainingLives}</p>
+    <div
+      sx={{
+        display: 'flex',
+        height: '100vh',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 4,
+        backgroundColor: 'slategray',
+      }}
+    >
+      <div>Current difficulty: {question.difficulty + 1}</div>
+      <div>Remaining lives: {remainingLives}</div>
 
       <QuestionBox question={question} onChoose={handleAnswer} />
     </div>

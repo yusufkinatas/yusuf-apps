@@ -2,6 +2,5 @@
 
 - React⁠ (framework)
 - ⁠Vite (bundler)
-- TailwindCSS (styling)
+- ThemeUI (styling)
 - ⁠Framer Motion (animations)
-- ⁠HeadlessUI (components if needed)

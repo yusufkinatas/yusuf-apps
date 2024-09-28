@@ -29,7 +29,15 @@ export const ErrorBoundary = ({ children }: PropsWithChildren) => {
 
   if (errorMessage) {
     return (
-      <div className="min-h-lvh bg-red-400 text-white p-4 text-xl">
+      <div
+        sx={{
+          minHeight: '100lvh',
+          backgroundColor: 'red.400',
+          color: 'white',
+          padding: 4,
+          fontSize: 'xl',
+        }}
+      >
         <b>Something went wrong</b>
         <p>{errorMessage}</p>
       </div>
