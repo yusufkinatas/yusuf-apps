@@ -1,6 +1,6 @@
 import { times } from 'lodash'
 
-import { BOX_COUNT } from './contants'
+import { BOX_COUNT } from './constants'
 import { ColorQuestion } from './types'
 
 export const QuestionBox = ({

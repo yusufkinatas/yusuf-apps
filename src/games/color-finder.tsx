@@ -1,36 +1,8 @@
-import { inRange, random, times } from 'lodash'
+import { times } from 'lodash'
 import { useState } from 'react'
 
-import { BOX_COUNT } from './color-finder/contants'
+import { generateQuestion } from './color-finder/generate-question'
 import { QuestionBox } from './color-finder/question-box'
-import { ColorQuestion } from './color-finder/types'
-
-const generateQuestion = (difficulty: number): ColorQuestion => {
-  if (!inRange(difficulty, 10)) {
-    throw new Error('Difficulty must be between 0 and 9')
-  }
-
-  const hue = random(359)
-  const saturation = random(50, 100)
-  const lightness = random(50, 80)
-  const color = `hsl(${hue}, ${saturation}%, ${lightness}%)`
-
-  let lightnessDiff = 20 - difficulty * 2
-
-  if (random(1)) {
-    lightnessDiff *= -1
-  }
-
-  const differentColor = `hsl(${hue}, ${saturation}%, ${lightness + lightnessDiff}%)`
-  const differentIndex = random(BOX_COUNT - 1)
-
-  return {
-    difficulty,
-    color,
-    differentColor,
-    differentIndex,
-  }
-}
 
 export const ColorFinder = () => {
   const [question, setQuestion] = useState(generateQuestion(0))
