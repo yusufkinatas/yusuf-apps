@@ -1,11 +1,7 @@
-import { motion, Transition } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { times } from 'lodash'
 import { Heart } from 'lucide-react'
 import { Flex } from 'theme-ui'
-
-const MHeart = motion.create(Heart)
-
-const transition: Transition = { duration: 0.4 }
 
 // TODO add animation and easter egg for the last heart
 export const RemainingLives = ({
@@ -22,18 +18,10 @@ export const RemainingLives = ({
       return (
         <motion.div
           key={i}
-          animate={isLost ? { scale: 0, rotate: [0, -20, 20, 0] } : {}}
-          sx={{ position: 'relative' }}
-          transition={transition}
+          animate={isLost ? { scale: 0, opacity: 0, rotate: [0, -20, 20, 0] } : {}}
+          transition={{ duration: 0.4 }}
         >
-          <MHeart
-            size={48}
-            fill="red"
-            animate={isLost ? { opacity: 0 } : {}}
-            sx={{ position: 'absolute' }}
-            transition={transition}
-          />
-          <MHeart size={48} />
+          <Heart size={48} fill="red" />
         </motion.div>
       )
     })}
