@@ -29,6 +29,7 @@ export const theme: Theme = {
       fontFamily: 'body',
       lineHeight: 'body',
       fontWeight: 'body',
+      WebkitTapHighlightColor: 'transparent',
     },
     h1: {
       color: 'text',
@@ -107,6 +108,15 @@ export const theme: Theme = {
     },
     img: {
       maxWidth: '100%',
+    },
+  },
+  buttons: {
+    primary: {
+      cursor: 'pointer',
+      transition: 'all 0.3s',
+      ':hover': {
+        scale: 1.1,
+      },
     },
   },
 }

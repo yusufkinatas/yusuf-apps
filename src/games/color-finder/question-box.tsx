@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { times } from 'lodash'
 
 import { BOX_COUNT } from './constants'
@@ -10,27 +11,33 @@ export const QuestionBox = ({
   question: ColorQuestion
   onChoose: (isCorrect: boolean) => void
 }) => (
-  <div
+  <motion.div
     sx={{
       display: 'grid',
-      width: 'fit-content',
-      minWidth: 'fit-content',
       gridTemplateColumns: 'repeat(3, 1fr)',
-      gap: 2,
-      border: '8px solid black',
+      p: 1,
       backgroundColor: 'white',
     }}
   >
     {times(BOX_COUNT).map(i => (
-      <div
+      <motion.div
         key={i}
         onClick={() => onChoose(i === differentIndex)}
+        whileHover={{
+          borderRadius: 16,
+        }}
+        whileTap={{
+          scale: 0.9,
+          borderRadius: 16,
+        }}
         sx={{
+          m: 1,
+          bg: i === differentIndex ? differentColor : color,
           width: 96,
           height: 96,
-          bg: i === differentIndex ? differentColor : color,
+          cursor: 'pointer',
         }}
       />
     ))}
-  </div>
+  </motion.div>
 )

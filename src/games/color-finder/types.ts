@@ -1,4 +1,4 @@
-export interface ColorQuestion {
+export type ColorQuestion = {
   difficulty: number
   color: string
   differentColor: string
