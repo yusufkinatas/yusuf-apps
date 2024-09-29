@@ -22,7 +22,7 @@ export const RemainingLives = ({
       return (
         <motion.div
           key={i}
-          animate={isLost ? { scale: 0.8, rotate: [0, -10, 10, 0] } : {}}
+          animate={isLost ? { scale: 0, rotate: [0, -10, 10, 0] } : {}}
           sx={{ position: 'relative' }}
           transition={transition}
         >
