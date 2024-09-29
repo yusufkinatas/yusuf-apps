@@ -1,11 +1,7 @@
-import { Theme, ThemeUIProvider } from 'theme-ui'
+import { ThemeUIProvider } from 'theme-ui'
 
 import { ColorFinder } from './games/color-finder'
-
-const theme: Theme = {
-  fonts: {},
-  colors: {},
-}
+import { theme } from './theme/theme'
 
 export const App = () => {
   return (

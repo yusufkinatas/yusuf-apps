@@ -23,14 +23,12 @@ export const QuestionBox = ({
   >
     {times(BOX_COUNT).map(i => (
       <div
+        key={i}
         onClick={() => onChoose(i === differentIndex)}
         sx={{
           width: 96,
           height: 96,
-        }}
-        key={i}
-        style={{
-          backgroundColor: i === differentIndex ? differentColor : color,
+          bg: i === differentIndex ? differentColor : color,
         }}
       />
     ))}

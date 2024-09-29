@@ -27,11 +27,11 @@ export const ColorFinder = () => {
     <div
       sx={{
         display: 'flex',
-        height: '100vh',
+        height: '100svh',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 4,
+        gap: 3,
         backgroundColor: 'slategray',
       }}
     >
