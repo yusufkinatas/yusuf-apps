@@ -4,3 +4,4 @@
 - ⁠Vite (bundler)
 - ThemeUI (styling)
 - ⁠Framer Motion (animations)
+- Lucide (icons)

@@ -9,6 +9,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
   },
   extends: [
+    'airbnb',
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended-type-checked',
     'plugin:@typescript-eslint/stylistic-type-checked',
@@ -22,6 +23,14 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh', 'simple-import-sort', 'unicorn'],
   rules: {
+    'import/no-unresolved': 'off',
+    'import/prefer-default-export': 'off',
+    'import/no-named-as-default': 'off',
+    'import/no-named-as-default-member': 'off',
+    'import/default': 'off',
+    'import/extensions': ['error', 'never', { json: 'always' }],
+    'no-alert': 'off',
+    'consistent-return': 'off',
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
@@ -61,6 +70,10 @@ module.exports = {
         next: 'export',
       },
     ],
+    'react/function-component-definition': 'off',
     'react/no-unknown-property': ['error', { ignore: ['sx'] }],
+    'react/jsx-filename-extension': 'off',
+    '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+    'react/jsx-no-useless-fragment': 'error',
   },
 }
