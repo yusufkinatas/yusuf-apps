@@ -5,7 +5,7 @@ import { Flex } from 'theme-ui'
 
 const MHeart = motion.create(Heart)
 
-const transition: Transition = { duration: 0.3 }
+const transition: Transition = { duration: 0.4 }
 
 // TODO add animation and easter egg for the last heart
 export const RemainingLives = ({
@@ -22,7 +22,7 @@ export const RemainingLives = ({
       return (
         <motion.div
           key={i}
-          animate={isLost ? { scale: 0, rotate: [0, -10, 10, 0] } : {}}
+          animate={isLost ? { scale: 0, rotate: [0, -20, 20, 0] } : {}}
           sx={{ position: 'relative' }}
           transition={transition}
         >
