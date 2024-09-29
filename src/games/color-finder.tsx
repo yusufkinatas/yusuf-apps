@@ -69,7 +69,7 @@ export const ColorFinder = ({ onGameOver, onVictory }: ColorFinderProps) => {
   return (
     <Center sx={{ flex: 1, flexDirection: 'column', gap: 3, userSelect: 'none' }}>
       <Center sx={{ flexDirection: 'column', width: 240, gap: 1 }}>
-        <div>Level: {question.difficulty}</div>
+        <div sx={{ fontSize: 4, fontWeight: 'bold' }}>Level: {question.difficulty}</div>
         <Progress
           max={MAX_DIFFICULTY - 1}
           value={question.difficulty - 1}
