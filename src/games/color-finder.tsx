@@ -25,29 +25,19 @@ export const ColorFinder = ({ onGameOver, onVictory }: ColorFinderProps) => {
   const [playJuut] = useSoundEffect('juut')
   const [playGil] = useSoundEffect('gil')
 
-  const handleAnswer = (isCorrect: boolean) => {
-    if (!isCorrect) {
-      if (remainingLives === 1) {
-        return onGameOver()
-      }
+  const handleWrongAnswer = () => {
+    playJuut({
+      playbackRate:
+        consecutive?.last === 'wrong' ? 1 - PITCH_STEP * consecutive.count : 1,
+    })
 
-      playJuut({
-        playbackRate:
-          consecutive?.last === 'wrong' ? 1 - PITCH_STEP * consecutive.count : 1,
-      })
+    trackConsecutive('wrong')
 
-      trackConsecutive('wrong')
+    setRemainingLives(remainingLives - 1)
+    setQuestion(generateQuestion(question.difficulty))
+  }
 
-      setRemainingLives(remainingLives - 1)
-      setQuestion(generateQuestion(question.difficulty))
-
-      return
-    }
-
-    if (question.difficulty === MAX_DIFFICULTY) {
-      return onVictory(remainingLives === MAX_LIVES)
-    }
-
+  const handleRightAnswer = () => {
     playGil({
       playbackRate:
         consecutive?.last === 'right' ? 1 + PITCH_STEP * consecutive.count : 1,
@@ -58,15 +48,26 @@ export const ColorFinder = ({ onGameOver, onVictory }: ColorFinderProps) => {
     setQuestion(generateQuestion(question.difficulty + 1))
   }
 
+  const handleAnswer = (isCorrect: boolean) => {
+    if (!isCorrect) {
+      if (remainingLives === 1) {
+        return onGameOver()
+      }
+
+      return handleWrongAnswer()
+    }
+
+    if (question.difficulty === MAX_DIFFICULTY) {
+      const isPerfect = remainingLives === MAX_LIVES
+
+      return onVictory(isPerfect)
+    }
+
+    handleRightAnswer()
+  }
+
   return (
-    <Center
-      sx={{
-        flex: 1,
-        flexDirection: 'column',
-        gap: 3,
-        userSelect: 'none',
-      }}
-    >
+    <Center sx={{ flex: 1, flexDirection: 'column', gap: 3, userSelect: 'none' }}>
       <Center sx={{ flexDirection: 'column', width: 240, gap: 1 }}>
         <div>Level: {question.difficulty}</div>
         <Progress
@@ -77,7 +78,6 @@ export const ColorFinder = ({ onGameOver, onVictory }: ColorFinderProps) => {
       </Center>
 
       <div>
-        <div sx={{ textAlign: 'center' }}>Remaining lives</div>
         <RemainingLives remainingLives={remainingLives} maxLives={MAX_LIVES} />
       </div>
 
