@@ -4,10 +4,11 @@ import { Progress } from 'theme-ui'
 import { Center } from '../components/center'
 import { useConsecutive } from '../utils/use-consecutive'
 import { useSoundEffect } from '../utils/use-sound-effect'
-import { MAX_DIFFICULTY, MAX_LIVES } from './color-finder/constants'
+import { LEVEL_COUNT, MAX_LIVES } from './color-finder/constants'
 import { generateQuestion } from './color-finder/generate-question'
 import { QuestionBox } from './color-finder/question-box'
 import { RemainingLives } from './color-finder/remaining-lives'
+import { HintLevel } from './color-finder/types'
 
 const PITCH_STEP = 0.05
 
@@ -24,6 +25,7 @@ export const ColorFinder = ({ onGameOver, onVictory }: ColorFinderProps) => {
 
   const [playJuut] = useSoundEffect('juut')
   const [playGil] = useSoundEffect('gil')
+  const [hintLevel, setHintLevel] = useState<HintLevel>(0)
 
   const handleWrongAnswer = () => {
     playJuut({
@@ -34,7 +36,8 @@ export const ColorFinder = ({ onGameOver, onVictory }: ColorFinderProps) => {
     trackConsecutive('wrong')
 
     setRemainingLives(remainingLives - 1)
-    setQuestion(generateQuestion(question.difficulty))
+    setQuestion(generateQuestion(question.level))
+    setHintLevel(0)
   }
 
   const handleRightAnswer = () => {
@@ -45,7 +48,8 @@ export const ColorFinder = ({ onGameOver, onVictory }: ColorFinderProps) => {
 
     trackConsecutive('right')
 
-    setQuestion(generateQuestion(question.difficulty + 1))
+    setQuestion(generateQuestion(question.level + 1))
+    setHintLevel(0)
   }
 
   const handleAnswer = (isCorrect: boolean) => {
@@ -57,7 +61,7 @@ export const ColorFinder = ({ onGameOver, onVictory }: ColorFinderProps) => {
       return handleWrongAnswer()
     }
 
-    if (question.difficulty === MAX_DIFFICULTY) {
+    if (question.level === LEVEL_COUNT) {
       const isPerfect = remainingLives === MAX_LIVES
 
       return onVictory(isPerfect)
@@ -69,10 +73,22 @@ export const ColorFinder = ({ onGameOver, onVictory }: ColorFinderProps) => {
   return (
     <Center sx={{ flex: 1, flexDirection: 'column', gap: 3, userSelect: 'none' }}>
       <Center sx={{ flexDirection: 'column', width: 240, gap: 1 }}>
-        <div sx={{ fontSize: 4, fontWeight: 'bold' }}>Level: {question.difficulty}</div>
+        {/* <Button
+          onClick={() =>
+            setHintLevel(p => {
+              if (p === 0) return 1
+              if (p === 1) return 2
+
+              return 0
+            })
+          }
+        >
+          Hint {hintLevel}
+        </Button> */}
+        <div sx={{ fontSize: 4, fontWeight: 'bold' }}>Level: {question.level}</div>
         <Progress
-          max={MAX_DIFFICULTY - 1}
-          value={question.difficulty - 1}
+          max={LEVEL_COUNT - 1}
+          value={question.level - 1}
           sx={{ bg: 'white', height: 8 }}
         />
       </Center>
@@ -81,7 +97,7 @@ export const ColorFinder = ({ onGameOver, onVictory }: ColorFinderProps) => {
         <RemainingLives remainingLives={remainingLives} maxLives={MAX_LIVES} />
       </div>
 
-      <QuestionBox question={question} onChoose={handleAnswer} />
+      <QuestionBox hintLevel={hintLevel} question={question} onChoose={handleAnswer} />
     </Center>
   )
 }

@@ -1,26 +1,34 @@
-import { inRange, random } from 'lodash'
+import { inRange, random, round } from 'lodash'
 
-import { BOX_COUNT, DIFF_PER_DIFFICULTY, MAX_DIFFICULTY } from './constants'
+import { BOX_COUNT, LEVEL_COUNT, MAX_COLOR_DIFF, MIN_COLOR_DIFF } from './constants'
 import { ColorQuestion } from './types'
 
 const maybeNegative = (value: number) => (random(1) ? value : -value)
 
-const maxPossibleIncrease = MAX_DIFFICULTY * DIFF_PER_DIFFICULTY
+const generateColorDiff = (level: number) => {
+  const diffPerLevel = (MAX_COLOR_DIFF - MIN_COLOR_DIFF) / (LEVEL_COUNT - 1)
 
-export const generateQuestion = (difficulty: number): ColorQuestion => {
-  if (!inRange(difficulty, 1, MAX_DIFFICULTY + 1)) {
-    throw new Error(
-      `Difficulty is ${difficulty}, it must be between 1 and ${MAX_DIFFICULTY + 1}`
-    )
+  let diff = MAX_COLOR_DIFF - diffPerLevel * (level - 1)
+
+  diff = round(diff, 1)
+
+  return diff
+}
+
+export const generateQuestion = (level: number): ColorQuestion => {
+  const isInRange = inRange(level, 1, LEVEL_COUNT + 1)
+
+  if (!isInRange) {
+    throw new Error(`Difficulty is ${level}, it must be between 1 and ${LEVEL_COUNT + 1}`)
   }
 
   const hue = random(359)
-  const saturation = random(50, 100 - maxPossibleIncrease)
-  const lightness = random(40, 100 - maxPossibleIncrease)
+  const saturation = random(50, 100 - MAX_COLOR_DIFF / 2)
+  const lightness = random(40, 90 - MAX_COLOR_DIFF / 2)
 
   const color = `hsl(${hue}, ${saturation}%, ${lightness}%)`
 
-  const totalDiff = maxPossibleIncrease - (difficulty - 1) * DIFF_PER_DIFFICULTY
+  const totalDiff = generateColorDiff(level)
 
   // split the total difference between lightness and saturation
   const diffedLightness = lightness + maybeNegative(totalDiff / 2)
@@ -30,9 +38,9 @@ export const generateQuestion = (difficulty: number): ColorQuestion => {
   const differentIndex = random(BOX_COUNT - 1)
 
   return {
-    difficulty,
     color,
     differentColor,
     differentIndex,
+    level,
   }
 }

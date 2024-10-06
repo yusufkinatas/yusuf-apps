@@ -1,43 +1,82 @@
-import { motion } from 'framer-motion'
+import { motion, Variant } from 'framer-motion'
 import { times } from 'lodash'
+import { Button } from 'theme-ui'
 
 import { BOX_COUNT } from './constants'
-import { ColorQuestion } from './types'
+import { ColorQuestion, HintLevel } from './types'
+
+enum BoxVariant {
+  hover = 'hover',
+  tap = 'tap',
+}
+
+const boxVariants: Record<BoxVariant, Variant> = {
+  hover: {
+    borderRadius: 16,
+    scale: 0.85,
+  },
+  tap: {
+    scale: 0.8,
+    borderRadius: 16,
+  },
+}
+
+const scalePerHintLevel: Record<HintLevel, number> = {
+  0: 0.9,
+  1: 0.95,
+  2: 1,
+}
+
+const MButton = motion.create(Button)
+
+type QuestionBoxProps = {
+  question: ColorQuestion
+  onChoose: (isCorrect: boolean) => void
+  hintLevel: HintLevel
+}
 
 export const QuestionBox = ({
   question: { color, differentColor, differentIndex },
   onChoose,
-}: {
-  question: ColorQuestion
-  onChoose: (isCorrect: boolean) => void
-}) => (
-  <motion.div
+  hintLevel,
+}: QuestionBoxProps) => (
+  <div
     sx={{
+      maxWidth: 480,
+      width: '100%',
       display: 'grid',
       gridTemplateColumns: 'repeat(3, 1fr)',
-      p: 1,
       backgroundColor: 'white',
+      border: '3px solid black',
     }}
   >
     {times(BOX_COUNT).map(i => (
-      <motion.div
+      <MButton
         key={i}
         onClick={() => onChoose(i === differentIndex)}
-        whileHover={{
-          borderRadius: 16,
-        }}
-        whileTap={{
-          scale: 0.9,
-          borderRadius: 16,
-        }}
+        whileHover={BoxVariant.hover}
+        whileFocus={BoxVariant.hover}
+        whileTap={BoxVariant.tap}
         sx={{
-          m: 1,
-          bg: i === differentIndex ? differentColor : color,
-          width: 96,
-          height: 96,
-          cursor: 'pointer',
+          position: 'relative',
+          width: '100%',
+          aspectRatio: '1/1',
+          outline: 'none',
+          bg: 'transparent',
+          p: 0,
         }}
-      />
+      >
+        <motion.div
+          sx={{
+            position: 'absolute',
+            inset: 0,
+            backgroundColor: i === differentIndex ? differentColor : color,
+          }}
+          initial={{ scale: scalePerHintLevel[hintLevel] }}
+          animate={{ scale: scalePerHintLevel[hintLevel] }}
+          variants={boxVariants}
+        />
+      </MButton>
     ))}
-  </motion.div>
+  </div>
 )
