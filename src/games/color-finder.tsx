@@ -72,12 +72,13 @@ export const ColorFinder = ({ onGameOver, onVictory }: ColorFinderProps) => {
 
   return (
     <Center sx={{ flex: 1, flexDirection: 'column', gap: 3, userSelect: 'none' }}>
-      <Center sx={{ flexDirection: 'column', width: 240, gap: 1 }}>
+      <Center sx={{ flexDirection: 'column', gap: 3 }}>
         {/* <Button
           onClick={() =>
             setHintLevel(p => {
               if (p === 0) return 1
               if (p === 1) return 2
+              if (p === 2) return 3
 
               return 0
             })
@@ -85,11 +86,18 @@ export const ColorFinder = ({ onGameOver, onVictory }: ColorFinderProps) => {
         >
           Hint {hintLevel}
         </Button> */}
-        <div sx={{ fontSize: 4, fontWeight: 'bold' }}>Level: {question.level}</div>
+        <div sx={{ textAlign: 'center' }}>
+          <div sx={{ fontSize: 4, fontWeight: 'bold', lineHeight: 1 }}>
+            Level: {question.level}
+          </div>
+          <div sx={{ fontSize: 2, fontWeight: 300 }}>
+            Difference: {question.differenceAmount}%
+          </div>
+        </div>
         <Progress
           max={LEVEL_COUNT - 1}
           value={question.level - 1}
-          sx={{ bg: 'white', height: 8 }}
+          sx={{ bg: 'white', height: 8, width: 240 }}
         />
       </Center>
 

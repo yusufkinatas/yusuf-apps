@@ -3,6 +3,7 @@ export type ColorQuestion = {
   color: string
   differentColor: string
   differentIndex: number
+  differenceAmount: number
 }
 
-export type HintLevel = 0 | 1 | 2
+export type HintLevel = 0 | 1 | 2 | 3

@@ -42,5 +42,6 @@ export const generateQuestion = (level: number): ColorQuestion => {
     differentColor,
     differentIndex,
     level,
+    differenceAmount: totalDiff,
   }
 }

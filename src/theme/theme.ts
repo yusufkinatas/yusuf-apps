@@ -118,5 +118,6 @@ export const theme: Theme = {
         scale: 1.1,
       },
     },
+    unstyled: { cursor: 'pointer', p: 0, borderRadius: 0, bg: 'transparent' },
   },
 }
