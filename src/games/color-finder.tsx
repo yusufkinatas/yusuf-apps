@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Progress } from 'theme-ui'
+import { Button, Progress } from 'theme-ui'
 
 import { Center } from '../components/center'
 import { useConsecutive } from '../utils/use-consecutive'
@@ -73,7 +73,7 @@ export const ColorFinder = ({ onGameOver, onVictory }: ColorFinderProps) => {
   return (
     <Center sx={{ flex: 1, flexDirection: 'column', gap: 3, userSelect: 'none' }}>
       <Center sx={{ flexDirection: 'column', gap: 3 }}>
-        {/* <Button
+        <Button
           onClick={() =>
             setHintLevel(p => {
               if (p === 0) return 1
@@ -85,7 +85,7 @@ export const ColorFinder = ({ onGameOver, onVictory }: ColorFinderProps) => {
           }
         >
           Hint {hintLevel}
-        </Button> */}
+        </Button>
         <div sx={{ textAlign: 'center' }}>
           <div sx={{ fontSize: 4, fontWeight: 'bold', lineHeight: 1 }}>
             Level: {question.level}
