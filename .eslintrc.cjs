@@ -30,6 +30,7 @@ module.exports = {
     'import/default': 'off',
     'import/extensions': ['error', 'never', { json: 'always' }],
     'no-alert': 'off',
+    'no-shadow': 'off',
     'consistent-return': 'off',
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'simple-import-sort/imports': 'error',

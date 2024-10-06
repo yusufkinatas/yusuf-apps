@@ -9,13 +9,13 @@ export const SoundButton = () => {
   const [playVolumeDown] = useSoundEffect('volumeDown', {
     soundEnabled: true,
     playbackRate: 1.5,
-    volume: 1.5,
+    volume: 2.5,
   })
 
   const [playVolumeUp] = useSoundEffect('volumeUp', {
     soundEnabled: true,
     playbackRate: 1.5,
-    volume: 1.5,
+    volume: 2.5,
   })
 
   return (

@@ -31,7 +31,8 @@ export const App = () => {
     <Flex
       sx={{
         flexDirection: 'column',
-        height: '100svh',
+        minHeight: '100svh',
+        p: 4,
         backgroundColor: 'slategray',
       }}
     >
