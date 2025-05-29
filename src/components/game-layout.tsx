@@ -12,6 +12,8 @@ export const GameLayout = () => (
       p: 4,
       backgroundColor: 'slategray',
       position: 'relative',
+
+      border: '5px solid red',
     }}
   >
     <Flex sx={{ gap: 2 }}>
@@ -24,6 +26,8 @@ export const GameLayout = () => (
       <SoundButton />
     </Flex>
 
-    <Outlet />
+    <div sx={{ flex: 1 }}>
+      <Outlet />
+    </div>
   </Flex>
 )
