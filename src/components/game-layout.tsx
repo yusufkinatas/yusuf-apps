@@ -1,15 +1,10 @@
 import { Home } from 'lucide-react'
-import { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import { Button, Flex } from 'theme-ui'
 
 import { SoundButton } from './sound-button'
 
-type GameLayoutProps = {
-  children: ReactNode
-}
-
-export const GameLayout = ({ children }: GameLayoutProps) => (
+export const GameLayout = () => (
   <Flex
     sx={{
       flexDirection: 'column',
@@ -29,6 +24,6 @@ export const GameLayout = ({ children }: GameLayoutProps) => (
       <SoundButton />
     </Flex>
 
-    {children}
+    <Outlet />
   </Flex>
 )

@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { Button, Progress } from 'theme-ui'
 
 import { Center } from '../components/center'
-import { GameLayout } from '../components/game-layout'
 import { useConsecutive } from '../utils/use-consecutive'
 import { useSoundEffect } from '../utils/use-sound-effect'
 import { LEVEL_COUNT, MAX_LIVES } from './color-finder/constants'
@@ -133,7 +132,7 @@ export const ColorFinder = () => {
   }
 
   return (
-    <GameLayout>
+    <>
       {gameState === 'play' && (
         <ColorFinderInner onGameOver={handleGameOver} onVictory={handleVictory} />
       )}
@@ -153,6 +152,6 @@ export const ColorFinder = () => {
           <Button onClick={() => setGameState('play')}>Play again</Button>
         </Center>
       )}
-    </GameLayout>
+    </>
   )
 }
