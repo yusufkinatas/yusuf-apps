@@ -112,6 +112,7 @@ export const theme: Theme = {
   },
   buttons: {
     primary: {
+      lineHeight: 1,
       cursor: 'pointer',
       transition: 'all 0.3s',
       ':hover': {

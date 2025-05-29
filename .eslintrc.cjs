@@ -23,6 +23,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh', 'simple-import-sort', 'unicorn'],
   rules: {
+    'no-void': 'off',
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',
     'import/no-named-as-default': 'off',

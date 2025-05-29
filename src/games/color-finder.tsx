@@ -1,7 +1,9 @@
+import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { Button, Progress } from 'theme-ui'
 
 import { Center } from '../components/center'
+import { GameLayout } from '../components/game-layout'
 import { useConsecutive } from '../utils/use-consecutive'
 import { useSoundEffect } from '../utils/use-sound-effect'
 import { LEVEL_COUNT, MAX_LIVES } from './color-finder/constants'
@@ -17,7 +19,7 @@ type ColorFinderProps = {
   onVictory: (isPerfect: boolean) => void
 }
 
-export const ColorFinder = ({ onGameOver, onVictory }: ColorFinderProps) => {
+const ColorFinderInner = ({ onGameOver, onVictory }: ColorFinderProps) => {
   const [question, setQuestion] = useState(() => generateQuestion(1))
   const [remainingLives, setRemainingLives] = useState(MAX_LIVES)
 
@@ -107,5 +109,50 @@ export const ColorFinder = ({ onGameOver, onVictory }: ColorFinderProps) => {
 
       <QuestionBox hintLevel={hintLevel} question={question} onChoose={handleAnswer} />
     </Center>
+  )
+}
+
+export const ColorFinder = () => {
+  const [playGameOver] = useSoundEffect('gameOver', { playbackRate: 1, volume: 2 })
+  const [playVictory] = useSoundEffect('victory', { playbackRate: 1.1, volume: 1.3 })
+
+  const [gameState, setGameState] = useState<'play' | 'lost' | 'won'>('play')
+
+  const handleGameOver = () => {
+    playGameOver()
+    setGameState('lost')
+  }
+
+  const handleVictory = (isPerfect: boolean) => {
+    playVictory()
+    setGameState('won')
+    if (isPerfect) {
+      // TODO add a special effect here for perfect victory
+      alert('Perfect victory! 🏆, you should see a special thing here probably')
+    }
+  }
+
+  return (
+    <GameLayout>
+      {gameState === 'play' && (
+        <ColorFinderInner onGameOver={handleGameOver} onVictory={handleVictory} />
+      )}
+
+      {gameState !== 'play' && (
+        <Center sx={{ flex: 1, flexDirection: 'column', gap: 3 }}>
+          <motion.h1
+            animate={{ rotate: [3, -3] }}
+            transition={{
+              duration: 0.5,
+              repeatType: 'mirror',
+              repeat: Infinity,
+            }}
+          >
+            {gameState === 'lost' ? '🥺 Game over 🥺' : '🏆 Victory! 🏆'}
+          </motion.h1>
+          <Button onClick={() => setGameState('play')}>Play again</Button>
+        </Center>
+      )}
+    </GameLayout>
   )
 }
