@@ -84,6 +84,12 @@ const ColorFinderInner = ({ onGameOver, onVictory }: ColorFinderProps) => {
               return 0
             })
           }
+          sx={{
+            opacity: 0,
+            '&:hover, &:focus': {
+              opacity: 1,
+            },
+          }}
         >
           Hint {hintLevel}
         </Button>

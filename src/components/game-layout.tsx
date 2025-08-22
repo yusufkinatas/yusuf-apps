@@ -12,8 +12,6 @@ export const GameLayout = () => (
       p: 4,
       backgroundColor: 'slategray',
       position: 'relative',
-
-      border: '5px solid red',
     }}
   >
     <Flex sx={{ gap: 2 }}>
