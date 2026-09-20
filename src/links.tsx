@@ -98,7 +98,7 @@ export const links: Link[] = [
   {
     type: 'app',
     name: 'Heartward',
-    description: 'Meet hard emotions with their counterforces',
+    description: 'Emotional counterpoint arcade',
     emoji: '💗',
     href: 'https://heartward.yusuf.app/',
   },
