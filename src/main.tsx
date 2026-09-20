@@ -13,7 +13,19 @@ ReactDOM.createRoot(document.querySelector('#root')!).render(
     <BrowserRouter>
       <ThemeUIProvider theme={theme}>
         <ErrorBoundary FallbackComponent={AppError}>
-          <Global styles={{ body: { overscrollBehavior: 'none' } }} />
+          <Global
+            styles={{
+              body: {
+                overscrollBehavior: 'none',
+                margin: 0,
+                backgroundColor: '#000',
+                color: '#fff',
+                fontFamily:
+                  'Geist, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+                WebkitFontSmoothing: 'antialiased',
+              },
+            }}
+          />
           <App />
         </ErrorBoundary>
       </ThemeUIProvider>
