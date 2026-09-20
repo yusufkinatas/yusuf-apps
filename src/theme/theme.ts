@@ -3,7 +3,7 @@ import { Theme } from 'theme-ui'
 export const theme: Theme = {
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fonts: {
-    body: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+    body: 'Geist, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
     heading: 'inherit',
     monospace: 'Menlo, monospace',
   },
@@ -18,11 +18,15 @@ export const theme: Theme = {
     heading: 1.125,
   },
   colors: {
-    text: '#000',
-    background: '#fff',
-    primary: '#07c',
+    text: '#fff',
+    background: '#000',
+    primary: '#E25F00',
     secondary: '#30c',
-    muted: '#f6f6f6',
+    muted: 'rgba(255, 255, 255, 0.55)',
+    surface: 'rgba(255, 255, 255, 0.035)',
+    surfaceHover: 'rgba(255, 255, 255, 0.06)',
+    border: 'rgba(255, 255, 255, 0.1)',
+    borderHover: 'rgba(255, 255, 255, 0.28)',
   },
   styles: {
     root: {
@@ -120,5 +124,21 @@ export const theme: Theme = {
       },
     },
     unstyled: { cursor: 'pointer', p: 0, borderRadius: 0, bg: 'transparent' },
+    ghost: {
+      cursor: 'pointer',
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: 'text',
+      bg: 'surface',
+      border: '1px solid',
+      borderColor: 'border',
+      borderRadius: 999,
+      transition: 'background-color 0.2s, border-color 0.2s',
+      ':hover': {
+        bg: 'surfaceHover',
+        borderColor: 'borderHover',
+      },
+    },
   },
 }

@@ -20,6 +20,7 @@ export const SoundButton = () => {
 
   return (
     <Button
+      variant="ghost"
       onClick={() => {
         if (settings.soundEnabled) {
           playVolumeDown()

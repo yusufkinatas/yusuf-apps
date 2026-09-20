@@ -10,13 +10,13 @@ export const GameLayout = () => (
       flexDirection: 'column',
       minHeight: '100svh',
       p: 4,
-      backgroundColor: 'slategray',
+      backgroundColor: 'background',
       position: 'relative',
     }}
   >
     <Flex sx={{ gap: 2 }}>
       <Link to="/">
-        <Button>
+        <Button variant="ghost">
           <Home />
         </Button>
       </Link>
