@@ -109,4 +109,11 @@ export const links: Link[] = [
     emoji: '🎶',
     href: 'https://loop.yusuf.app/',
   },
+  {
+    type: 'app',
+    name: 'Loop Survivors (Alt)',
+    description: 'Alternate take: six-channel mixer',
+    emoji: '🎛️',
+    href: 'https://loopsurvivorstest.vercel.app/',
+  },
 ]
