@@ -1,154 +1,206 @@
+import {
+  Anchor,
+  AudioWaveform,
+  CalendarCheck,
+  Dumbbell,
+  Flame,
+  Heart,
+  LucideIcon,
+  Mic,
+  Music,
+  Orbit,
+  Package,
+  Palette,
+  Route,
+  SlidersVertical,
+  Sparkles,
+  Sword,
+  Timer,
+  WandSparkles,
+  Zap,
+} from 'lucide-react'
 import { ReactNode } from 'react'
 
 import { ColorFinder } from './games/color-finder'
+import { GRID_WIDTH, LEVEL_COUNT, MAX_LIVES } from './games/color-finder/constants'
+import { ColorFinderPreview } from './games/color-finder/preview'
+
+export type LinkCategory = 'game' | 'app'
 
 type LinkBase = {
-  type: 'game' | 'app'
+  category: LinkCategory
   name: string
   description: string
-  emoji: string
+  icon: LucideIcon
 }
 
-type GameLink = LinkBase & {
-  type: 'game'
+// Played on this site, featured on the homepage
+export type InternalLink = LinkBase & {
+  type: 'internal'
   slug: string
   component: ReactNode
+  preview: ReactNode
+  stats: { label: string; value: string }[]
 }
 
-type AppLink = LinkBase & {
-  type: 'app'
+export type ExternalLink = LinkBase & {
+  type: 'external'
   href: string
 }
 
-type Link = GameLink | AppLink
+export type Link = InternalLink | ExternalLink
 
 export const links: Link[] = [
   {
-    type: 'app',
+    type: 'external',
+    category: 'app',
     name: 'Master Yi',
     description: 'The first ever website I made',
-    emoji: '⚔️',
+    icon: Sword,
     href: 'https://masteryi.yusuf.app/',
   },
   {
-    type: 'app',
+    type: 'external',
+    category: 'game',
     name: 'Sokoban',
     description: 'Classic box-pushing puzzle game',
-    emoji: '📦',
+    icon: Package,
     href: 'https://sokoban.yusuf.app/',
   },
   {
-    type: 'game',
+    type: 'internal',
+    category: 'game',
     slug: 'color-finder',
     name: 'Color Finder',
     description: 'Find the different colored square',
-    emoji: '🎨',
+    icon: Palette,
     component: <ColorFinder />,
+    preview: <ColorFinderPreview />,
+    stats: [
+      { label: 'Levels', value: String(LEVEL_COUNT) },
+      { label: 'Lives', value: String(MAX_LIVES) },
+      { label: 'Grid', value: `${GRID_WIDTH} × ${GRID_WIDTH}` },
+    ],
   },
   {
-    type: 'app',
+    type: 'external',
+    category: 'app',
     name: '28 Days Challenge',
     description: 'Build habits in 28 days',
-    emoji: '📆',
+    icon: CalendarCheck,
     href: 'https://28.yusuf.app/',
   },
 
   {
-    type: 'app',
+    type: 'external',
+    category: 'app',
     name: 'Lovable Clone',
     description: 'Fully functional text-to-app AI',
-    emoji: '❤️',
+    icon: Sparkles,
     href: 'https://lovable.yusuf.app',
   },
   {
-    type: 'app',
+    type: 'external',
+    category: 'app',
     name: 'Workout',
     description: 'My personal workout companion',
-    emoji: '💪',
+    icon: Dumbbell,
     href: 'https://workout.yusuf.app/',
   },
   {
-    type: 'app',
+    type: 'external',
+    category: 'app',
     name: 'Countime',
     description: 'Shareable online countdown timer',
-    emoji: '⏱️',
+    icon: Timer,
     href: 'https://countime.yusuf.app/',
   },
   {
-    type: 'app',
+    type: 'external',
+    category: 'game',
     name: 'Spell Fight',
     description: 'Spell-casting battle game',
-    emoji: '🪄',
+    icon: WandSparkles,
     href: 'https://spellfight.yusuf.app/',
   },
   {
-    type: 'app',
+    type: 'external',
+    category: 'game',
     name: 'Orbitrush',
     description: 'Endless neon orbit runner',
-    emoji: '🪐',
+    icon: Orbit,
     href: 'https://orbit.yusuf.app/',
   },
   {
-    type: 'app',
+    type: 'external',
+    category: 'game',
     name: 'Flow Commander',
     description: 'Cozy pixel-art routing puzzle',
-    emoji: '🐜',
+    icon: Route,
     href: 'https://flow.yusuf.app/',
   },
   {
-    type: 'app',
+    type: 'external',
+    category: 'game',
     name: 'Heartward',
     description: 'Emotional counterpoint arcade',
-    emoji: '💗',
+    icon: Heart,
     href: 'https://heartward.yusuf.app/',
   },
   {
-    type: 'app',
+    type: 'external',
+    category: 'game',
     name: 'Loop Survivors',
     description: 'Music-loop-driven survivors-like',
-    emoji: '🎶',
+    icon: Music,
     href: 'https://loop.yusuf.app/',
   },
   {
-    type: 'app',
+    type: 'external',
+    category: 'game',
     name: 'Loop Survivors (Alt)',
     description: 'Alternate take: six-channel mixer',
-    emoji: '🎛️',
+    icon: SlidersVertical,
     href: 'https://loop-alt.yusuf.app/',
   },
   {
-    type: 'app',
+    type: 'external',
+    category: 'game',
     name: 'Embermarch',
     description: 'Cheap attempt at a roguelike RTS',
-    emoji: '🔥',
+    icon: Flame,
     href: 'https://ember.yusuf.app/',
   },
   {
-    type: 'app',
+    type: 'external',
+    category: 'game',
     name: 'One Finger Dragon Punch',
     description: 'LoL-style One Finger Death Punch',
-    emoji: '🐉',
+    icon: Zap,
     href: 'https://leesin.yusuf.app/',
   },
   {
-    type: 'app',
+    type: 'external',
+    category: 'game',
     name: 'Abyssal Weight',
     description: 'Made in Abyss extraction roguelike',
-    emoji: '⚓',
+    icon: Anchor,
     href: 'https://abyss.yusuf.app/',
   },
   {
-    type: 'app',
+    type: 'external',
+    category: 'game',
     name: 'Rhyme Game',
     description: 'Turkish rhyme-making game',
-    emoji: '🎤',
+    icon: Mic,
     href: 'https://rhyme.yusuf.app/',
   },
   {
-    type: 'app',
+    type: 'external',
+    category: 'app',
     name: 'Beatbox Practice',
     description: 'Practice beatbox sounds',
-    emoji: '🥁',
+    icon: AudioWaveform,
     href: 'https://beatbox.yusuf.app/',
   },
 ]

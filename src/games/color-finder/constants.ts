@@ -1,4 +1,4 @@
-const GRID_WIDTH = 3
+export const GRID_WIDTH = 3
 
 export const BOX_COUNT = GRID_WIDTH * GRID_WIDTH
 

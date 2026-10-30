@@ -9,8 +9,12 @@ export const App = () => (
     <Route path="/" element={<Homepage />} />
 
     {links.map(link =>
-      link.type === 'game' ? (
-        <Route key={link.slug} path={`/game/${link.slug}`} element={<GameLayout />}>
+      link.type === 'internal' ? (
+        <Route
+          key={link.slug}
+          path={`/game/${link.slug}`}
+          element={<GameLayout link={link} />}
+        >
           <Route index element={link.component} />
         </Route>
       ) : undefined

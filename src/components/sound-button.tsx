@@ -21,6 +21,7 @@ export const SoundButton = () => {
   return (
     <Button
       variant="ghost"
+      aria-label={settings.soundEnabled ? 'Mute sound' : 'Unmute sound'}
       onClick={() => {
         if (settings.soundEnabled) {
           playVolumeDown()
@@ -31,7 +32,7 @@ export const SoundButton = () => {
         setSetting('soundEnabled', !settings.soundEnabled)
       }}
     >
-      {settings.soundEnabled ? <Volume2 /> : <VolumeOff />}
+      {settings.soundEnabled ? <Volume2 size={20} /> : <VolumeOff size={20} />}
     </Button>
   )
 }

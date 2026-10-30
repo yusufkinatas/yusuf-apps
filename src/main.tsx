@@ -24,6 +24,10 @@ ReactDOM.createRoot(document.querySelector('#root')!).render(
                   'Geist, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
                 WebkitFontSmoothing: 'antialiased',
               },
+              'a:focus-visible, button:focus-visible': {
+                outline: '2px solid #E25F00',
+                outlineOffset: 3,
+              },
             }}
           />
           <App />

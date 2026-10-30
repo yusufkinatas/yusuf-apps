@@ -1,135 +1,234 @@
-import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { sortBy } from 'lodash'
+import { AppWindow, ArrowUpRight, Gamepad2, Heart } from 'lucide-react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Box, Flex, Grid, Heading, Text } from 'theme-ui'
 
 import { links } from '../links'
-import { Center } from './center'
+import { AppRow } from './homepage/app-row'
+import { FeaturedGameCard } from './homepage/featured-game-card'
+import { Filter, FilterTabs } from './homepage/filter-tabs'
+import { GameCard } from './homepage/game-card'
+import { SectionHeader } from './homepage/section-header'
 
-export const Homepage = () => (
-  <Box
-    sx={{
-      minHeight: '100svh',
-      backgroundColor: 'background',
-      color: 'text',
-      px: [3, 4],
-      py: [5, 6],
-    }}
-  >
-    <Box sx={{ width: '100%', maxWidth: 760, mx: 'auto' }}>
-      <Box as="header" sx={{ mb: [4, 5] }}>
-        <Heading
-          as="h1"
+// Games that play on this site lead the grid as featured cards
+const games = sortBy(
+  links.filter(link => link.category === 'game'),
+  link => link.type !== 'internal'
+)
+
+const apps = links.filter(link => link.category === 'app')
+
+export const Homepage = () => {
+  const [filter, setFilter] = useState<Filter>('all')
+
+  return (
+    <Box
+      sx={{
+        minHeight: '100svh',
+        backgroundColor: 'background',
+        color: 'text',
+        px: [3, 4],
+      }}
+    >
+      <Box sx={{ width: '100%', maxWidth: 1080, mx: 'auto' }}>
+        <Flex
+          as="header"
           sx={{
-            fontSize: ['40px', '56px'],
-            fontWeight: 700,
-            letterSpacing: '-0.03em',
-            lineHeight: 1.05,
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 3,
+            height: [64, 76],
+            borderBottom: '1px solid',
+            borderColor: 'border',
           }}
         >
-          Apps by{' '}
+          <Link
+            to="/"
+            sx={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '10px',
+              color: 'text',
+              textDecoration: 'none',
+              fontFamily: 'monospace',
+              fontSize: 1,
+              fontWeight: 500,
+            }}
+          >
+            <Box
+              sx={{ width: 10, height: 10, borderRadius: 3, backgroundColor: 'primary' }}
+            />
+            yusuf.app
+          </Link>
+
           <a
             href="https://yusufkinatas.com/"
             target="_blank"
             rel="noreferrer"
             sx={{
-              color: 'primary',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 1,
+              height: 44,
+              color: 'subtle',
               textDecoration: 'none',
-              transition: 'opacity 0.2s',
-              ':hover': { opacity: 0.75 },
+              fontSize: 1,
+              transition: 'color 0.2s',
+              ':hover': { color: 'text' },
             }}
           >
-            Yusuf
+            About
+            <ArrowUpRight size={14} />
           </a>
-        </Heading>
+        </Flex>
 
-        <Text
-          sx={{
-            display: 'block',
-            mt: 3,
-            maxWidth: 460,
-            color: 'muted',
-            fontSize: [2, 3],
-            lineHeight: 1.5,
-          }}
-        >
-          A collection of games and apps I&apos;ve built over the years.
-        </Text>
-      </Box>
-
-      <Grid sx={{ gap: 3, gridTemplateColumns: ['1fr', 'repeat(2, 1fr)'] }}>
-        {links.map(link => (
-          <Link
-            key={link.name}
-            to={link.type === 'game' ? `/game/${link.slug}` : link.href}
-            target={link.type === 'game' ? undefined : '_blank'}
-            rel={link.type === 'game' ? undefined : 'noreferrer'}
-            style={{ textDecoration: 'none', display: 'block', height: '100%' }}
+        <Box as="section" sx={{ pt: ['32px', '72px'], pb: [4, '36px'] }}>
+          <Heading
+            as="h1"
+            sx={{
+              fontSize: ['40px', '64px'],
+              fontWeight: 700,
+              letterSpacing: '-0.035em',
+              lineHeight: 1.05,
+            }}
           >
-            <Box
+            Apps by{' '}
+            <a
+              href="https://yusufkinatas.com/"
+              target="_blank"
+              rel="noreferrer"
               sx={{
-                height: '100%',
-                p: 3,
-                borderRadius: 14,
-                backgroundColor: 'surface',
-                border: '1px solid',
-                borderColor: 'border',
-                transition: 'transform 0.2s, background-color 0.2s, border-color 0.2s',
-                ':hover': {
-                  backgroundColor: 'surfaceHover',
-                  borderColor: 'borderHover',
-                  transform: 'translateY(-2px)',
-                },
-                ':hover .card-arrow': { color: 'primary', transform: 'translateX(3px)' },
+                color: 'primary',
+                textDecoration: 'none',
+                transition: 'opacity 0.2s',
+                ':hover': { opacity: 0.75 },
               }}
             >
-              <Flex sx={{ alignItems: 'center', gap: 3 }}>
-                <Center
-                  sx={{
-                    flexShrink: 0,
-                    width: 48,
-                    height: 48,
-                    borderRadius: 12,
-                    fontSize: 4,
-                    backgroundColor: 'rgba(255, 255, 255, 0.06)',
-                    border: '1px solid',
-                    borderColor: 'border',
-                  }}
-                >
-                  {link.emoji}
-                </Center>
+              Yusuf
+            </a>
+          </Heading>
 
-                <Flex sx={{ flex: 1, minWidth: 0, flexDirection: 'column', gap: 1 }}>
-                  <Heading
-                    as="h3"
-                    sx={{ fontSize: 2, fontWeight: 600, letterSpacing: '-0.01em', color: 'text' }}
-                  >
-                    {link.name}
-                  </Heading>
-                  <Text sx={{ fontSize: 1, color: 'muted', lineHeight: 1.4 }}>
-                    {link.description}
-                  </Text>
-                </Flex>
+          <Text
+            as="p"
+            sx={{
+              mt: ['10px', 3],
+              maxWidth: 480,
+              color: 'muted',
+              fontSize: [2, 3],
+              lineHeight: 1.5,
+            }}
+          >
+            A collection of games and apps I&apos;ve built over the years.
+          </Text>
+        </Box>
 
-                <Box
-                  className="card-arrow"
-                  sx={{
-                    flexShrink: 0,
-                    display: 'flex',
-                    color: 'muted',
-                    transition: 'transform 0.2s, color 0.2s',
-                  }}
-                >
-                  {link.type === 'game' ? <ArrowRight size={20} /> : <ArrowUpRight size={20} />}
-                </Box>
-              </Flex>
-            </Box>
-          </Link>
-        ))}
-      </Grid>
+        <FilterTabs
+          value={filter}
+          onChange={setFilter}
+          counts={{ all: links.length, game: games.length, app: apps.length }}
+        />
 
-      <Text as="p" sx={{ mt: [5, 6], color: 'muted', fontSize: 1 }}>
-        developed with 🧡
-      </Text>
+        {filter !== 'app' && (
+          <Box as="section" id="games" sx={{ pt: ['36px', '56px'] }}>
+            <SectionHeader
+              icon={Gamepad2}
+              title="Games"
+              count={games.length}
+              description="Arcade experiments, roguelikes and puzzles. One plays right here."
+              tone="accent"
+            />
+
+            <Grid
+              sx={{
+                gap: ['12px', 3],
+                gridTemplateColumns: [
+                  'repeat(2, minmax(0, 1fr))',
+                  undefined,
+                  undefined,
+                  'repeat(3, minmax(0, 1fr))',
+                ],
+              }}
+            >
+              {games.map(link =>
+                link.type === 'internal' ? (
+                  <FeaturedGameCard key={link.name} link={link} />
+                ) : (
+                  <GameCard key={link.name} link={link} />
+                )
+              )}
+            </Grid>
+          </Box>
+        )}
+
+        {filter !== 'game' && (
+          <Box as="section" id="apps" sx={{ pt: ['44px', '72px'] }}>
+            <SectionHeader
+              icon={AppWindow}
+              title="Apps"
+              count={apps.length}
+              description="Tools, experiments and side projects."
+              tone="neutral"
+            />
+
+            <Grid
+              sx={{
+                gap: [2, '12px'],
+                gridTemplateColumns: [
+                  'minmax(0, 1fr)',
+                  undefined,
+                  undefined,
+                  'repeat(2, minmax(0, 1fr))',
+                ],
+              }}
+            >
+              {apps.map(link => (
+                <AppRow key={link.name} link={link} />
+              ))}
+            </Grid>
+          </Box>
+        )}
+
+        <Flex
+          as="footer"
+          sx={{
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 3,
+            mt: ['48px', '96px'],
+            pt: ['24px', '28px'],
+            pb: ['32px', '40px'],
+            borderTop: '1px solid',
+            borderColor: 'border',
+            color: 'muted',
+            fontSize: ['13px', 1],
+          }}
+        >
+          <Flex sx={{ alignItems: 'center', gap: '6px' }}>
+            developed with
+            <Flex sx={{ color: 'primary' }}>
+              <Heart size={14} fill="currentColor" role="img" aria-label="love" />
+            </Flex>
+          </Flex>
+
+          <a
+            href="https://yusufkinatas.com/"
+            target="_blank"
+            rel="noreferrer"
+            sx={{
+              color: 'muted',
+              textDecoration: 'none',
+              fontFamily: 'monospace',
+              fontSize: ['12px', '13px'],
+              transition: 'color 0.2s',
+              ':hover': { color: 'text' },
+            }}
+          >
+            yusufkinatas.com
+          </a>
+        </Flex>
+      </Box>
     </Box>
-  </Box>
-)
+  )
+}
