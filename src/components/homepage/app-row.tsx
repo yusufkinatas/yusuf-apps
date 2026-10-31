@@ -3,7 +3,7 @@ import { Flex, Text } from 'theme-ui'
 
 import { Link } from '../../links'
 import { CardArrow, IconTile } from './card'
-import { cardSx, getLinkCaption, getLinkProps } from './card-utils'
+import { cardSx, getLinkProps } from './card-utils'
 
 export const AppRow = ({ link }: { link: Link }) => (
   <RouterLink
@@ -36,17 +36,6 @@ export const AppRow = ({ link }: { link: Link }) => (
       </Text>
     </Flex>
 
-    <Text
-      sx={{
-        display: ['none', 'block'],
-        flexShrink: 0,
-        fontFamily: 'monospace',
-        fontSize: 0,
-        color: 'muted',
-      }}
-    >
-      {getLinkCaption(link)}
-    </Text>
     <CardArrow link={link} />
   </RouterLink>
 )

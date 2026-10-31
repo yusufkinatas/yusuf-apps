@@ -24,6 +24,3 @@ export const getLinkProps = (link: Link) =>
   link.type === 'internal'
     ? { to: `/game/${link.slug}` }
     : { to: link.href, target: '_blank', rel: 'noreferrer' }
-
-export const getLinkCaption = (link: Link) =>
-  link.type === 'internal' ? `/game/${link.slug}` : new URL(link.href).host
