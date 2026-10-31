@@ -60,13 +60,7 @@ export const Homepage = () => (
       </Box>
 
       <Box as="section" id="games" sx={{ pt: ['40px', '64px'] }}>
-        <SectionHeader
-          icon={Gamepad2}
-          title="Games"
-          count={games.length}
-          description="Arcade experiments, roguelikes and puzzles."
-          tone="accent"
-        />
+        <SectionHeader icon={Gamepad2} title="Games" count={games.length} tone="accent" />
 
         <Grid
           sx={{
@@ -86,13 +80,7 @@ export const Homepage = () => (
       </Box>
 
       <Box as="section" id="apps" sx={{ pt: ['44px', '72px'] }}>
-        <SectionHeader
-          icon={AppWindow}
-          title="Apps"
-          count={apps.length}
-          description="Tools, experiments and side projects."
-          tone="neutral"
-        />
+        <SectionHeader icon={AppWindow} title="Apps" count={apps.length} tone="neutral" />
 
         <Grid
           sx={{
