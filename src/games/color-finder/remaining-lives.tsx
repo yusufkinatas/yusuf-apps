@@ -11,7 +11,7 @@ export const RemainingLives = ({
   remainingLives: number
   maxLives: number
 }) => (
-  <Flex>
+  <Flex sx={{ gap: '6px', color: 'primary' }}>
     {times(maxLives).map(i => {
       const isLost = i >= remainingLives
 
@@ -21,7 +21,7 @@ export const RemainingLives = ({
           animate={isLost ? { scale: 0, opacity: 0, rotate: [0, -20, 20, 0] } : {}}
           transition={{ duration: 0.4 }}
         >
-          <Heart size={48} fill="red" />
+          <Heart size={28} fill="currentColor" />
         </motion.div>
       )
     })}

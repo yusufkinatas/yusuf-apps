@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { Button, Progress } from 'theme-ui'
+import { Button, Flex, Progress } from 'theme-ui'
 
 import { Center } from '../components/center'
 import { useConsecutive } from '../utils/use-consecutive'
@@ -94,17 +94,36 @@ const ColorFinderInner = ({ onGameOver, onVictory }: ColorFinderProps) => {
           Hint {hintLevel}
         </Button>
         <div sx={{ textAlign: 'center' }}>
-          <div sx={{ fontSize: 4, fontWeight: 'bold', lineHeight: 1 }}>
-            Level: {question.level}
-          </div>
-          <div sx={{ fontSize: 2, fontWeight: 300 }}>
+          <Flex sx={{ alignItems: 'baseline', justifyContent: 'center', gap: 2 }}>
+            <span
+              sx={{
+                fontSize: ['36px', '44px'],
+                fontWeight: 'bold',
+                letterSpacing: '-0.03em',
+                lineHeight: 1,
+                fontVariantNumeric: 'tabular-nums',
+              }}
+            >
+              Level {question.level}
+            </span>
+            <span sx={{ fontFamily: 'monospace', fontSize: 1, color: 'muted' }}>
+              / {LEVEL_COUNT}
+            </span>
+          </Flex>
+          <div sx={{ mt: 2, fontSize: '15px', color: 'muted' }}>
             Difference: {question.differenceAmount}%
           </div>
         </div>
         <Progress
           max={LEVEL_COUNT - 1}
           value={question.level - 1}
-          sx={{ bg: 'white', height: 8, width: 240 }}
+          sx={{
+            color: 'primary',
+            bg: 'border',
+            height: 6,
+            width: 320,
+            maxWidth: '100%',
+          }}
         />
       </Center>
 
@@ -155,7 +174,9 @@ export const ColorFinder = () => {
           >
             {gameState === 'lost' ? '🥺 Game over 🥺' : '🏆 Victory! 🏆'}
           </motion.h1>
-          <Button onClick={() => setGameState('play')}>Play again</Button>
+          <Button variant="accent" onClick={() => setGameState('play')}>
+            Play again
+          </Button>
         </Center>
       )}
     </>
