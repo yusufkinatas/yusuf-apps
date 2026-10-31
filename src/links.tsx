@@ -23,7 +23,7 @@ import { ReactNode } from 'react'
 
 import { ColorFinder } from './games/color-finder'
 
-export type LinkCategory = 'game' | 'app'
+type LinkCategory = 'game' | 'app'
 
 type LinkBase = {
   category: LinkCategory

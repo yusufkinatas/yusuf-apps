@@ -23,7 +23,6 @@ export const theme: Theme = {
     primary: '#E25F00',
     primarySoft: 'rgba(226, 95, 0, 0.14)',
     secondary: '#30c',
-    subtle: 'rgba(255, 255, 255, 0.7)',
     muted: 'rgba(255, 255, 255, 0.55)',
     surface: 'rgba(255, 255, 255, 0.035)',
     surfaceHover: 'rgba(255, 255, 255, 0.06)',
