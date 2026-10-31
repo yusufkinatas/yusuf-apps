@@ -1,4 +1,3 @@
-import { sortBy } from 'lodash'
 import { AppWindow, ArrowUpRight, Gamepad2, Heart } from 'lucide-react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -6,17 +5,11 @@ import { Box, Flex, Grid, Heading, Text } from 'theme-ui'
 
 import { links } from '../links'
 import { AppRow } from './homepage/app-row'
-import { FeaturedGameCard } from './homepage/featured-game-card'
 import { Filter, FilterTabs } from './homepage/filter-tabs'
 import { GameCard } from './homepage/game-card'
 import { SectionHeader } from './homepage/section-header'
 
-// Games that play on this site lead the grid as featured cards
-const games = sortBy(
-  links.filter(link => link.category === 'game'),
-  link => link.type !== 'internal'
-)
-
+const games = links.filter(link => link.category === 'game')
 const apps = links.filter(link => link.category === 'app')
 
 export const Homepage = () => {
@@ -135,7 +128,7 @@ export const Homepage = () => {
               icon={Gamepad2}
               title="Games"
               count={games.length}
-              description="Arcade experiments, roguelikes and puzzles. One plays right here."
+              description="Arcade experiments, roguelikes and puzzles."
               tone="accent"
             />
 
@@ -150,13 +143,9 @@ export const Homepage = () => {
                 ],
               }}
             >
-              {games.map(link =>
-                link.type === 'internal' ? (
-                  <FeaturedGameCard key={link.name} link={link} />
-                ) : (
-                  <GameCard key={link.name} link={link} />
-                )
-              )}
+              {games.map(link => (
+                <GameCard key={link.name} link={link} />
+              ))}
             </Grid>
           </Box>
         )}

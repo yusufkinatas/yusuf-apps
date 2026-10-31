@@ -22,8 +22,6 @@ export const theme: Theme = {
     background: '#000',
     primary: '#E25F00',
     primarySoft: 'rgba(226, 95, 0, 0.14)',
-    primaryTint: 'rgba(226, 95, 0, 0.06)',
-    primaryBorder: 'rgba(226, 95, 0, 0.3)',
     secondary: '#30c',
     subtle: 'rgba(255, 255, 255, 0.7)',
     muted: 'rgba(255, 255, 255, 0.55)',

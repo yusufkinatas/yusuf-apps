@@ -22,8 +22,6 @@ import {
 import { ReactNode } from 'react'
 
 import { ColorFinder } from './games/color-finder'
-import { GRID_WIDTH, LEVEL_COUNT, MAX_LIVES } from './games/color-finder/constants'
-import { ColorFinderPreview } from './games/color-finder/preview'
 
 export type LinkCategory = 'game' | 'app'
 
@@ -34,13 +32,11 @@ type LinkBase = {
   icon: LucideIcon
 }
 
-// Played on this site, featured on the homepage
+// Played on this site
 export type InternalLink = LinkBase & {
   type: 'internal'
   slug: string
   component: ReactNode
-  preview: ReactNode
-  stats: { label: string; value: string }[]
 }
 
 export type ExternalLink = LinkBase & {
@@ -75,12 +71,6 @@ export const links: Link[] = [
     description: 'Find the different colored square',
     icon: Palette,
     component: <ColorFinder />,
-    preview: <ColorFinderPreview />,
-    stats: [
-      { label: 'Levels', value: String(LEVEL_COUNT) },
-      { label: 'Lives', value: String(MAX_LIVES) },
-      { label: 'Grid', value: `${GRID_WIDTH} × ${GRID_WIDTH}` },
-    ],
   },
   {
     type: 'external',
