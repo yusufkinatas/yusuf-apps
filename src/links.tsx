@@ -2,6 +2,7 @@ import {
   Anchor,
   AudioWaveform,
   CalendarCheck,
+  Cat,
   Dumbbell,
   Flame,
   Heart,
@@ -176,6 +177,14 @@ export const links: Link[] = [
     description: 'Made in Abyss extraction roguelike',
     icon: Anchor,
     href: 'https://abyss.yusuf.app/',
+  },
+  {
+    type: 'external',
+    category: 'game',
+    name: 'Meowhem',
+    description: '3D party game: catsitter vs cats',
+    icon: Cat,
+    href: 'https://cats.yusuf.app/',
   },
   {
     type: 'external',
