@@ -1,11 +1,10 @@
-import { ArrowRight, ArrowUpRight, LucideIcon } from 'lucide-react'
+import { ArrowUpRight, LucideIcon } from 'lucide-react'
 import { Box } from 'theme-ui'
 
-import { Link } from '../../links'
 import { Center } from '../center'
 import { Tone } from './card-utils'
 
-export const CardArrow = ({ link }: { link: Link }) => (
+export const CardArrow = () => (
   <Box
     className="card-arrow"
     sx={{
@@ -15,7 +14,7 @@ export const CardArrow = ({ link }: { link: Link }) => (
       transition: 'transform 0.2s, color 0.2s',
     }}
   >
-    {link.type === 'internal' ? <ArrowRight size={18} /> : <ArrowUpRight size={18} />}
+    <ArrowUpRight size={18} />
   </Box>
 )
 

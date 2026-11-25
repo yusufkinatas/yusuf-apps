@@ -36,6 +36,6 @@ export const AppRow = ({ link }: { link: Link }) => (
       </Text>
     </Flex>
 
-    <CardArrow link={link} />
+    <CardArrow />
   </RouterLink>
 )

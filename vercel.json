@@ -5,6 +5,16 @@
       "source": "/",
       "destination": "https://yusufkinatas.com/work",
       "permanent": true
+    },
+    {
+      "source": "/game/color-finder",
+      "destination": "https://color-finder.yusuf.app",
+      "permanent": true
+    },
+    {
+      "source": "/game/color-finder/:path(.*)",
+      "destination": "https://color-finder.yusuf.app",
+      "permanent": true
     }
   ]
 }
