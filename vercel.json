@@ -6,11 +6,5 @@
       "destination": "https://yusufkinatas.com/work",
       "permanent": true
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/game/color-finder",
-      "destination": "/index.html"
-    }
   ]
 }
