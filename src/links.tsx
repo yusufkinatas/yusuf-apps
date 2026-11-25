@@ -20,36 +20,19 @@ import {
   WandSparkles,
   Zap,
 } from 'lucide-react'
-import { ReactNode } from 'react'
-
-import { ColorFinder } from './games/color-finder'
 
 type LinkCategory = 'game' | 'app'
 
-type LinkBase = {
+export type Link = {
   category: LinkCategory
   name: string
   description: string
   icon: LucideIcon
-}
-
-// Played on this site
-export type InternalLink = LinkBase & {
-  type: 'internal'
-  slug: string
-  component: ReactNode
-}
-
-export type ExternalLink = LinkBase & {
-  type: 'external'
   href: string
 }
 
-export type Link = InternalLink | ExternalLink
-
 export const links: Link[] = [
   {
-    type: 'external',
     category: 'app',
     name: 'Master Yi',
     description: 'The first ever website I made',
@@ -57,7 +40,6 @@ export const links: Link[] = [
     href: 'https://masteryi.yusuf.app/',
   },
   {
-    type: 'external',
     category: 'game',
     name: 'Sokoban',
     description: 'Classic box-pushing puzzle game',
@@ -65,16 +47,13 @@ export const links: Link[] = [
     href: 'https://sokoban.yusuf.app/',
   },
   {
-    type: 'internal',
     category: 'game',
-    slug: 'color-finder',
     name: 'Color Finder',
     description: 'Find the different colored square',
     icon: Palette,
-    component: <ColorFinder />,
+    href: 'https://color-finder.yusuf.app/',
   },
   {
-    type: 'external',
     category: 'app',
     name: '28 Days Challenge',
     description: 'Build habits in 28 days',
@@ -83,7 +62,6 @@ export const links: Link[] = [
   },
 
   {
-    type: 'external',
     category: 'app',
     name: 'Lovable Clone',
     description: 'Fully functional text-to-app AI',
@@ -91,7 +69,6 @@ export const links: Link[] = [
     href: 'https://lovable.yusuf.app',
   },
   {
-    type: 'external',
     category: 'app',
     name: 'Workout',
     description: 'My personal workout companion',
@@ -99,7 +76,6 @@ export const links: Link[] = [
     href: 'https://workout.yusuf.app/',
   },
   {
-    type: 'external',
     category: 'app',
     name: 'Countime',
     description: 'Shareable online countdown timer',
@@ -107,7 +83,6 @@ export const links: Link[] = [
     href: 'https://countime.yusuf.app/',
   },
   {
-    type: 'external',
     category: 'game',
     name: 'Spell Fight',
     description: 'Spell-casting battle game',
@@ -115,7 +90,6 @@ export const links: Link[] = [
     href: 'https://spellfight.yusuf.app/',
   },
   {
-    type: 'external',
     category: 'game',
     name: 'Orbitrush',
     description: 'Endless neon orbit runner',
@@ -123,7 +97,6 @@ export const links: Link[] = [
     href: 'https://orbit.yusuf.app/',
   },
   {
-    type: 'external',
     category: 'game',
     name: 'Flow Commander',
     description: 'Cozy pixel-art routing puzzle',
@@ -131,7 +104,6 @@ export const links: Link[] = [
     href: 'https://flow.yusuf.app/',
   },
   {
-    type: 'external',
     category: 'game',
     name: 'Heartward',
     description: 'Emotional counterpoint arcade',
@@ -139,7 +111,6 @@ export const links: Link[] = [
     href: 'https://heartward.yusuf.app/',
   },
   {
-    type: 'external',
     category: 'game',
     name: 'Loop Survivors',
     description: 'Music-loop-driven survivors-like',
@@ -147,7 +118,6 @@ export const links: Link[] = [
     href: 'https://loop.yusuf.app/',
   },
   {
-    type: 'external',
     category: 'game',
     name: 'Loop Survivors (Alt)',
     description: 'Alternate take: six-channel mixer',
@@ -155,7 +125,6 @@ export const links: Link[] = [
     href: 'https://loop-alt.yusuf.app/',
   },
   {
-    type: 'external',
     category: 'game',
     name: 'Embermarch',
     description: 'Cheap attempt at a roguelike RTS',
@@ -163,7 +132,6 @@ export const links: Link[] = [
     href: 'https://ember.yusuf.app/',
   },
   {
-    type: 'external',
     category: 'game',
     name: 'One Finger Dragon Punch',
     description: 'LoL-style One Finger Death Punch',
@@ -171,7 +139,6 @@ export const links: Link[] = [
     href: 'https://leesin.yusuf.app/',
   },
   {
-    type: 'external',
     category: 'game',
     name: 'Abyssal Weight',
     description: 'Made in Abyss extraction roguelike',
@@ -179,7 +146,6 @@ export const links: Link[] = [
     href: 'https://abyss.yusuf.app/',
   },
   {
-    type: 'external',
     category: 'game',
     name: 'Meowhem',
     description: '3D party game: catsitter vs cats',
@@ -187,7 +153,6 @@ export const links: Link[] = [
     href: 'https://cats.yusuf.app/',
   },
   {
-    type: 'external',
     category: 'game',
     name: 'Rhyme Game',
     description: 'Turkish rhyme-making game',
@@ -195,7 +160,6 @@ export const links: Link[] = [
     href: 'https://rhyme.yusuf.app/',
   },
   {
-    type: 'external',
     category: 'app',
     name: 'Beatbox Practice',
     description: 'Practice beatbox sounds',

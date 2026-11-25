@@ -20,7 +20,8 @@ export const cardSx: ThemeUIStyleObject = {
   ':hover .card-arrow': { color: 'primary', transform: 'translate(2px, -2px)' },
 }
 
-export const getLinkProps = (link: Link) =>
-  link.type === 'internal'
-    ? { to: `/game/${link.slug}` }
-    : { to: link.href, target: '_blank', rel: 'noreferrer' }
+export const getLinkProps = (link: Link) => ({
+  to: link.href,
+  target: '_blank',
+  rel: 'noreferrer',
+})
