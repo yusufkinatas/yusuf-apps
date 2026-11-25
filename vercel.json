@@ -2,6 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/",
+      "destination": "https://yusufkinatas.com/work",
+      "permanent": true
+    },
+    {
       "source": "/game/color-finder",
       "destination": "https://color-finder.yusuf.app",
       "permanent": true
