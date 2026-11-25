@@ -7,7 +7,7 @@
       "permanent": true
     },
     {
-      "source": "/game/color-finder/:path*",
+      "source": "/game/color-finder/:path(.*)",
       "destination": "https://color-finder.yusuf.app",
       "permanent": true
     }
