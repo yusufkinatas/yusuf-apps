@@ -13,7 +13,7 @@ export const GameCard = ({ link }: { link: Link }) => (
   >
     <Flex sx={{ justifyContent: 'space-between', alignItems: 'flex-start' }}>
       <IconTile icon={link.icon} tone="accent" />
-      <CardArrow link={link} />
+      <CardArrow />
     </Flex>
 
     <Text

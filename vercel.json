@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/game/color-finder",
+      "destination": "https://color-finder.yusuf.app",
+      "permanent": true
+    },
+    {
+      "source": "/game/color-finder/:path*",
+      "destination": "https://color-finder.yusuf.app",
+      "permanent": true
+    }
+  ]
+}
